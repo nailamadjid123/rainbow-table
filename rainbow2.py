@@ -1,6 +1,7 @@
 import hashlib
 import random
 import string
+
 import time
 
 # Fonction de hachage SHA-256
