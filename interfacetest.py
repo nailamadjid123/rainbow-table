@@ -28,16 +28,8 @@ def reduce_function(hashcode):
         candidate_password += hashcode[i]
     return candidate_password
 
-
-
-
-def brute_force_attack():
-    # Code pour l'attaque brute force
-    print("Exécution de l'attaque brute force")
-
-
+# Fonction pour exécuter l'attaque de table arc-en-ciel
 def rainbow_attack():
-    print("Exécution de l'attaque par rainbow table")
     try:
         # Charger le dictionnaire
         dictionary = load_dictionary("my_dict.txt")
@@ -48,7 +40,7 @@ def rainbow_attack():
         # Demander à l'utilisateur de saisir un mot de passe ou son hachage
         user_input = input("Entrez un mot de passe ou son hachage : ")
         chain_length = 1000
-    
+        
         if len(user_input) == 64:  # Longueur typique d'un hachage SHA-256
             hashed_password = user_input
             for _ in range(chain_length):
@@ -75,31 +67,48 @@ def rainbow_attack():
     except Exception as e:
         print(f"Erreur lors de l'attaque par table arc-en-ciel: {e}")
 
+# Fonction pour exécuter l'attaque brute force (exemple)
+def brute_force_attack():
+    print("Exécution de l'attaque brute force")
 
+# Fonction pour exécuter l'attaque par dictionnaire (exemple)
 def dictionary_attack():
-    # Code pour l'attaque par dictionnaire
     print("Exécution de l'attaque par dictionnaire")
 
-def main():
-    # Création de la fenêtre principale
-    root = tk.Tk()
-    root.title("Sélecteur de méthode d'attaque")
+# Création de la fenêtre principale
+root = tk.Tk()
+root.title("Sélecteur de méthode d'attaque")
+# Variables associées aux Checkbuttons
+var_brute_force = tk.BooleanVar()
+var_rainbow = tk.BooleanVar()
+var_dictionary = tk.BooleanVar()
 
-    # Création et disposition des widgets
-    label = tk.Label(root, text="Choisissez une méthode d'attaque :")
-    label.pack(pady=10)
+# Création et disposition des widgets
+label = tk.Label(root, text="Choisissez les méthodes d'attaque :")
+label.pack(pady=10)
 
-    button_brute_force = tk.Button(root, text="Attaque brute force", command=brute_force_attack)
-    button_brute_force.pack(pady=5)
+checkbutton_brute_force = tk.Checkbutton(root, text="Attaque brute force", variable=var_brute_force)
+checkbutton_brute_force.pack(pady=5)
 
-    button_rainbow = tk.Button(root, text="Attaque par rainbow table", command=rainbow_attack)
-    button_rainbow.pack(pady=5)
+checkbutton_rainbow = tk.Checkbutton(root, text="Attaque par rainbow table", variable=var_rainbow)
+checkbutton_rainbow.pack(pady=5)
 
-    button_dictionary = tk.Button(root, text="Attaque par dictionnaire", command=dictionary_attack)
-    button_dictionary.pack(pady=5)
+checkbutton_dictionary = tk.Checkbutton(root, text="Attaque par dictionnaire", variable=var_dictionary)
+checkbutton_dictionary.pack(pady=5)
 
-    # Boucle principale
-    root.mainloop()
+execute_button = tk.Button(root, text="Exécuter", command=execute_selected_methods)
+execute_button.pack(pady=10)
 
-if __name__ == "__main__":
-    main()
+
+
+# Fonction pour exécuter les méthodes sélectionnées
+def execute_selected_methods():
+    if var_brute_force.get():
+        brute_force_attack()
+    if var_rainbow.get():
+        rainbow_attack()
+    if var_dictionary.get():
+        dictionary_attack()
+
+# Boucle principale
+root.mainloop()
