@@ -5,6 +5,10 @@ import time
 import os
 import string
 import itertools
+from PIL import Image,ImageTk
+
+
+
 # Fonction pour attaquer par dictionnaire
 def dictionary_attack_window():
     def process():
