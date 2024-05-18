@@ -9,6 +9,8 @@ from PIL import Image,ImageTk
 import threading
 import tkinter as tk 
 
+
+
 # Fonction pour attaquer par dictionnaire
 def dictionary_attack_window():
     def process():
@@ -65,18 +67,18 @@ def dictionary_attack_window():
 
     new_window = Toplevel()
     new_window.title("Attaque par dictionnaire")
-
-    tk.Label(new_window, text="Entrez le hash à cracker :").pack(pady=10)
+    new_window.config(bg="black")
+    tk.Label(new_window, text="Entrez le hash à cracker :", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activeforeground="#00BCD4", bd=0, highlightthickness=0).pack(pady=10)
     hash_entry = tk.Entry(new_window, width=50)
     hash_entry.pack(pady=5)
 
     hash_method_var = tk.StringVar(value="md5")
-    tk.Label(new_window, text="Sélectionnez la méthode de hachage :").pack(pady=5)
-    tk.Radiobutton(new_window, text="MD5", variable=hash_method_var, value="md5").pack()
-    tk.Radiobutton(new_window, text="SHA-256", variable=hash_method_var, value="sha256").pack()
-    tk.Radiobutton(new_window, text="SHA-512", variable=hash_method_var, value="sha512").pack()
+    tk.Label(new_window, text="Sélectionnez la méthode de hachage :", takefocus=0, bg="#100E30", fg="white", activeforeground="#00BCD4", bd=0, highlightthickness=0).pack(pady=5)
+    tk.Radiobutton(new_window, text="MD5", variable=hash_method_var, value="md5",bg="#100E30",fg="white").pack()
+    tk.Radiobutton(new_window, text="SHA-256", variable=hash_method_var, value="sha256",bg="#100E30",fg="white").pack()
+    tk.Radiobutton(new_window, text="SHA-512", variable=hash_method_var, value="sha512",bg="#100E30",fg="white").pack()
 
-    tk.Button(new_window, text="Exécuter l'attaque", command=process, width=20, height=2).pack(pady=10)
+    tk.Button(new_window, text="Exécuter l'attaque", command=process,width=20, height=2,activebackground="#100E38", font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="#00BCD4", activeforeground="#00BCD4", bd=0, highlightthickness=0).pack(pady=10)
 
 # fonction d'interface brute force
 def brute_force(password_hash, hash_method, max_length, output_file, salt=None):
@@ -131,17 +133,17 @@ def brute_force_attack_window():
 
     new_window = Toplevel()
     new_window.title("Brute Force Attack")
-
+    new_window.config(bg="black")
     # Header
-    header_label = tk.Label(new_window, text="BRUTE FORCE", font=("Helvetica", 18), background="#f0f0f0")
+    header_label = tk.Label(new_window, text="BRUTE FORCE", background="#f0f0f0",font="BahnschrifLight 13 bold")
     header_label.pack(pady=10)
-
+   
     # Frame pour les options
     options_frame = tk.Frame(new_window)
     options_frame.pack(pady=10)
-
+    options_frame.config(bg="black")
     # Entrée du hash
-    hash_label = tk.Label(options_frame, text="Password Hash:")
+    hash_label = tk.Label(options_frame, text="Password Hash:",font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     hash_label.grid(row=0, column=0, padx=5, pady=5)
     hash_entry = tk.Entry(options_frame)
     hash_entry.grid(row=0, column=1, padx=5, pady=5)
@@ -149,33 +151,33 @@ def brute_force_attack_window():
     # Méthode de hachage
     method_var = tk.StringVar()
     method_var.set("md5")
-    method_label = tk.Label(options_frame, text="Hash Method:")
+    method_label = tk.Label(options_frame, text="Hash Method:",font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     method_label.grid(row=1, column=0, padx=5, pady=5)
     method_menu = tk.OptionMenu(options_frame, method_var, "md5", "sha256")
     method_menu.grid(row=1, column=1, padx=5, pady=5)
 
     # Longueur maximale du mot de passe
-    length_label = tk.Label(options_frame, text="Max Password Length:")
+    length_label = tk.Label(options_frame, text="Max Password Length:", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     length_label.grid(row=2, column=0, padx=5, pady=5)
     length_entry = tk.Entry(options_frame)
     length_entry.grid(row=2, column=1, padx=5, pady=5)
 
     # Fichier de sortie
-    output_label = tk.Label(options_frame, text="Output File:")
+    output_label = tk.Label(options_frame, text="Output File:",font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     output_label.grid(row=3, column=0, padx=5, pady=5)
     output_entry = tk.Entry(options_frame)
     output_entry.grid(row=3, column=1, padx=5, pady=5)
-    output_button = tk.Button(options_frame, text="Browse", command=lambda: browse_file(output_entry))
+    output_button = tk.Button(options_frame, text="Browse", command=lambda: browse_file(output_entry),width=20, height=2, font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     output_button.grid(row=3, column=2, padx=5, pady=5)
 
     # Salt
-    salt_label = tk.Label(options_frame, text="Salt (if used):")
+    salt_label = tk.Label(options_frame, text="Salt (if used):",font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
     salt_label.grid(row=4, column=0, padx=5, pady=5)
     salt_entry = tk.Entry(options_frame)
     salt_entry.grid(row=4, column=1, padx=5, pady=5)
 
     # Bouton de traitement
-    process_button = tk.Button(new_window, text="Crack Password", command=process)
+    process_button = tk.Button(new_window, text="Crack Password ",width=20, height=2, font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0, command=process)
     process_button.pack(pady=10)
 
 # Fonction pour attaquer avec Rainbow Table (non modifiée)
@@ -209,18 +211,18 @@ def rainbow_attack_window():
                 except KeyError:
                     result_text += "Mot de passe non trouvé"
 
-            result_label.config(text=result_text)
+            result_label.config(text=result_text,bg="black",fg="white")
         except Exception as e:
             messagebox.showerror("Erreur", f"Erreur lors de l'attaque par table arc-en-ciel: {e}")
-
+            messagebox.config(bg="black")
     new_window = Toplevel()
     new_window.title("Rainbow Table Attack")
-
-    tk.Label(new_window, text="Entrez un mot de passe ou un hachage :").pack(pady=10)
+    new_window.config(bg="black")
+    tk.Label(new_window, text="Entrez un mot de passe ou un hachage :", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
     entry_input = tk.Entry(new_window, width=50)
     entry_input.pack(pady=5)
 
-    tk.Button(new_window, text="Exécuter l'attaque", command=perform_rainbow_attack, width=20, height=2).pack(pady=10)
+    tk.Button(new_window, text="Exécuter l'attaque", command=perform_rainbow_attack,   width=20, height=2, font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
     result_label = tk.Label(new_window, text="")
     result_label.pack(pady=10)
 
@@ -267,11 +269,11 @@ def main():
     root = tk.Tk()
     root.geometry("600x400") 
     root.config(bg="black")
+    root.resizable(False, False)
     root.title("Sélecteur de méthode d'attaque")
-
     # Charger l'image "image_hack.jpeg" pour l'interface principale
     main_interface_img = Image.open('image hack.jpeg')
-    main_interface_img = main_interface_img.resize((600,400),Image.Resampling.LANCZOS)
+    main_interface_img = main_interface_img.resize((600,400)) 
     main_interface_img_tk = ImageTk.PhotoImage(main_interface_img)
 
     # Créer un canevas pour afficher l'image
@@ -281,16 +283,20 @@ def main():
     # Afficher l'image sur le canevas
     canvas.create_image(0, 0, anchor="nw", image=main_interface_img_tk)
 
-    # Ajouter les boutons sur l'image
-    brute_force_btn = tk.Button(root, text="Attaque brute force", command=brute_force_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    # Ajouter le texte sur l'image
+    canvas.create_text(300, 30, text="Choisissez une méthode d'attaque", font="Bahnschrift 20", fill="white")
+
+   
+
+    brute_force_btn = tk.Button(root, text="Brute force", command=brute_force_attack_window, font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0, width=20, height=2)
     brute_force_btn_window = canvas.create_window(300, 150, anchor="center", window=brute_force_btn)
-
-    rainbow_btn = tk.Button(root, text="Attaque par rainbow table", command=rainbow_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    brute_force_btn.place(x=10, y=100)
+    rainbow_btn = tk.Button(root, text=" Rainbow table", command=rainbow_attack_window, activebackground="#100E38", font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="white", activeforeground="#3F51Bf", bd=0, highlightthickness=0, width=20, height=2)
     rainbow_btn_window = canvas.create_window(300, 220, anchor="center", window=rainbow_btn)
-
-    dictionary_btn = tk.Button(root, text="Attaque par dictionnaire", command=dictionary_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    rainbow_btn.place(x=10, y=200)
+    dictionary_btn = tk.Button(root, text="Dictionnaire", command=dictionary_attack_window,activebackground="#100E38", font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="white", activeforeground="#00BCD4", bd=0, highlightthickness=0, width=20, height=2)
     dictionary_btn_window = canvas.create_window(300, 290, anchor="center", window=dictionary_btn)
-
+    dictionary_btn.place(x=10, y=300)
     # Exécution de la boucle principale
     root.mainloop()
 
