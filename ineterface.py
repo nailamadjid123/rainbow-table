@@ -218,11 +218,11 @@ def rainbow_attack_window():
     new_window = Toplevel()
     new_window.title("Rainbow Table Attack")
     new_window.config(bg="black")
-    tk.Label(new_window, text="Entrez un mot de passe ou un hachage :", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
+    tk.Label(new_window, text="Entrez un mot de passe ou un hachage :", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
     entry_input = tk.Entry(new_window, width=50)
     entry_input.pack(pady=5)
 
-    tk.Button(new_window, text="Exécuter l'attaque", command=perform_rainbow_attack,   width=20, height=2, font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
+    tk.Button(new_window, text="Exécuter l'attaque", command=perform_rainbow_attack,   width=20, height=2, font="BahnschrifLight 13 bold", takefocus=0, bg="#100E30", fg="white", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0).pack(pady=10)
     result_label = tk.Label(new_window, text="")
     result_label.pack(pady=10)
 
