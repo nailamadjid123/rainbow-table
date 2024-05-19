@@ -6,8 +6,8 @@ import os
 import string
 import itertools
 from PIL import Image,ImageTk
-
-
+import threading
+import tkinter as tk 
 
 # Fonction pour attaquer par dictionnaire
 def dictionary_attack_window():
@@ -268,23 +268,31 @@ def main():
     root.geometry("600x400") 
     root.config(bg="black")
     root.title("Sélecteur de méthode d'attaque")
-    
-    # Création et disposition des widgets
-    label = tk.Label(root, text="Choisissez une méthode d'attaque :", font="Bahnschrift 20", bg="#100E30", fg="#E91E63")
-    label.pack(pady=10)
 
-    button_brute_force = tk.Button(root, text="Attaque brute force", command=brute_force_attack_window, width=20, height=2, font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#9C27B0", activebackground="#100E38", activeforeground="#9C27B0", bd=0, highlightthickness=0)
-    button_brute_force.pack(pady=5)
+    # Charger l'image "image_hack.jpeg" pour l'interface principale
+    main_interface_img = Image.open('image hack.jpeg')
+    main_interface_img = main_interface_img.resize((600,400),Image.Resampling.LANCZOS)
+    main_interface_img_tk = ImageTk.PhotoImage(main_interface_img)
 
-    button_rainbow = tk.Button(root, text="Attaque par rainbow table", command=rainbow_attack_window, width=20, height=2, activebackground="#100E38", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#3F51Bf", activeforeground="#3F51Bf", bd=0, highlightthickness=0)
-    button_rainbow.pack(pady=5)
+    # Créer un canevas pour afficher l'image
+    canvas = tk.Canvas(root, width=600, height=400, bg="black", highlightthickness=0)
+    canvas.pack()
 
-    button_dictionary = tk.Button(root, text="Attaque par dictionnaire", command=dictionary_attack_window, width=20, height=2, activebackground="#100E38", font="BahnschrifLight 13", takefocus=0, bg="#100E30", fg="#00BCD4", activeforeground="#00BCD4", bd=0, highlightthickness=0)
-    button_dictionary.pack(pady=5)
+    # Afficher l'image sur le canevas
+    canvas.create_image(0, 0, anchor="nw", image=main_interface_img_tk)
+
+    # Ajouter les boutons sur l'image
+    brute_force_btn = tk.Button(root, text="Attaque brute force", command=brute_force_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    brute_force_btn_window = canvas.create_window(300, 150, anchor="center", window=brute_force_btn)
+
+    rainbow_btn = tk.Button(root, text="Attaque par rainbow table", command=rainbow_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    rainbow_btn_window = canvas.create_window(300, 220, anchor="center", window=rainbow_btn)
+
+    dictionary_btn = tk.Button(root, text="Attaque par dictionnaire", command=dictionary_attack_window, bd=0, bg="black", fg="white", font=("Arial", 12))
+    dictionary_btn_window = canvas.create_window(300, 290, anchor="center", window=dictionary_btn)
 
     # Exécution de la boucle principale
     root.mainloop()
 
 if __name__ == "__main__":
     main()
-
